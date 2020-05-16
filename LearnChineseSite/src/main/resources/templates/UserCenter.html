@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>原创中心 - Learning Chinese</title>
+
+    <script type="text/javascript" src="/static/assets/js/jquery-3.3.1.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/center/collectList.css">
+</head>
+<body style="background-color: rgba(204,204,204,0.23)">
+
+
+<div class="fav_list">
+    <div data-v-357a65ed="" class="fav_list_box">
+        <div class="fav_list_title">
+            <h3 class="fav_list_title_h3">原创中心</h3>
+            <div class="fav_num">
+                共<spanc th:text="${numbers}"></spanc>条
+            </div>
+        </div>
+        <div class="my_fav_con">
+            <div>
+                <ul class="my_fav_list" th:each="userUgcList:${userUgcList}">
+                    <li class="my_fav_list_li">
+                        <a class="my_fav_list_a"
+                           th:href="@{/userCenter/neirong(id=${userUgcList.id})}"
+                           target="_blank" th:text="${userUgcList.title}">
+
+                        </a>
+                        <label class="my_fav_list_label">
+                            <span th:text="${#dates.format(userUgcList.pushTime,'yyyy-MM-dd')}"></span>
+                        </label>
+                    </li>
+
+
+                </ul> <!---->
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SocreTotalMapper">
+
+  <resultMap id="BaseResultMap" type="com.example.demo.domain.SocreTotal">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="course_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="score" javaType="java.lang.Float" jdbcType="FLOAT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, course_id, user_id, score
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from socre_total
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByCourseId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from socre_total
+    where user_id = #{userId,jdbcType=VARCHAR} and course_id = #{courseId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByAvg" parameterType="java.lang.String" resultType="float">
+    select
+    AVG (score)
+    from socre_total
+    where course_id = #{courseId,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from socre_total
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.domain.SocreTotal">
+    insert into socre_total (id, course_id, user_id, 
+      score)
+    values (#{id,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{score,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.domain.SocreTotal">
+    insert into socre_total
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="courseId != null">
+        course_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null">
+        #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.domain.SocreTotal">
+    update socre_total
+    <set>
+      <if test="courseId != null">
+        course_id = #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.domain.SocreTotal">
+    update socre_total
+    set course_id = #{courseId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      score = #{score,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>在线汉语学堂后台管理系统</title>
+  <link rel="stylesheet" href="/static/admin/layui/css/layui.css">
+</head>
+<div class="layui-container">  
+    <div class="layui-row">
+        <div class="layui-col-lg12">
+            <fieldset class="layui-elem-field">
+                <legend>课程管理 - 新增课程</legend>
+                <div class="layui-field-box">
+                    <form id="editUser" class="layui-form" action="/course/add" method="post">
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">课程名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name"   lay-verify="required"   autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">教师名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="teacher"   lay-verify="required"   autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">类别</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="category"   lay-verify="required"   autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">价格</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="price"   lay-verify="required"   autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">图片链接地址</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="url"   lay-verify="required"   autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">介绍</label>
+                            <div class="layui-input-block">
+                                <textarea name="introduce" placeholder="请输入内容" class="layui-textarea"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">英文介绍</label>
+                            <div class="layui-input-block">
+                                <textarea name="introduceEn" placeholder="请输入内容" class="layui-textarea"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button onclick="doSubmitForm()" class="layui-btn"  lay-filter="formDemo">立即提交</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/static/admin/javascript/jquery.min.js"></script>
+<script type="text/javascript" src="/static/admin/layui/layui.js"></script>
+<script type="text/javascript" src="/static/admin/javascript/dw_form_submit.js"></script>
+</body>
+<script>
+    function doSubmitForm() {
+        var form = document.getElementById('editUser');
+        form.submit();
+    }
+</script>
+</html>

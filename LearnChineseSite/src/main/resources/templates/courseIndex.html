@@ -1,0 +1,429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="Classification" content="Education, Language education, 教育, 语言学习">
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+
+    <link type="text/css" rel="stylesheet" href="/static/css/reset1.css">
+    <link type="text/css" rel="stylesheet" href="/static/css/header.css">
+    <link type="text/css" rel="stylesheet" href="/static/css/footer.css">
+    <link type="text/css" rel="stylesheet" href="/static/css/topbar.css">
+
+    <link type="text/css" rel="stylesheet" href="http://static.yes-chinese.com/styles/supplier.css">
+
+    <script language="javascript" src="/static/js/jquery-1.4.2.min.js"></script>
+    <script language="javascript" src="/static/js/new_store.js"></script>
+
+    <script type="text/javascript" src="/static/js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="/static/js/new_langlang.js"></script>
+
+    <script type="text/javascript" src="/static/js/jquery.placeholder.js"></script>
+
+    <script type="text/javascript" src="/static/js/new_store.js"></script>
+
+    <script type="text/javascript" src="/static/js/supplier.js"></script>
+
+    <title>课程首页 - Learning Chinese</title>
+
+    <script type="text/javascript">
+        var url = "course/search.html";
+        $(document).ready(function () {
+            getVs();
+        });
+    </script>
+</head>
+<body>
+
+<div id="s_topbar">
+    <div class="s_topbar">
+        <div class="s_bar_l">
+            <ul>
+
+
+                <li id="s_jckc">
+                    <a href="javascript:;" show_id="s_bar_jckc">个人中心<br><span>Personal center</span></a>
+                    <a href="/user/pages/alter" class="top_link1" title="修改个人信息 edit personal information"><img
+                            src="/static/picture/w_store_b9.jpg"></a>
+                </li>
+                <li id="s_tslm">
+                    <a href="javascript:;" show_id="s_bar_tslm">原创中心<br/><span>Original Center</span></a>
+                    <a href="/user/pages/push" class="top_link1" title="发布原创内容 Publish original content "><img
+                            src="/static/picture/w_store_b9.jpg"/></a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="s_bar_c">
+
+
+        </div>
+
+        <div class="clear"></div>
+        <!--资源下拉菜单-->
+        <div id="s_bar_jxgj" class="s_bar_sublist" style="display:none;">
+
+        </div>
+        <!--教材下拉菜单-->
+        <div id="s_bar_jckc" class="s_bar_sublist" style="display:none;">
+            <ul>
+                <li><span class="topbar_span1">•</span><a href="/user/vedio/indexPage">已购课程<br><span>Purchased courses</span></a></li>
+                <li class="special1"><span class="topbar_span1">•</span><a href="/user/pages/alter">修改个人信息<br><span>edit personal information</span></a>
+                </li>
+            </ul>
+        </div>
+        <!--班级下拉菜单-->
+        <div id="s_bar_tslm" class="s_bar_sublist" style="display:none;">
+            <ul>
+                <li><span class="topbar_span1">•</span><a href="/userCenter/index">原创中心<br><span>Original Center</span></a>
+                </li>
+                <li><span class="topbar_span1">•</span><a
+                        href="/user/pages/push">发布原创<br><span>Publish original</span></a></li>
+                </li>
+            </ul>
+        </div>
+        <!--登录后用户名下拉菜单-->
+
+    </div>
+</div>
+
+<div id="login_div" class="exe_release_pop" style="display:none;">
+    <a href="javascript:;" onclick="showDialog.hide()" class="exe_pop_btn">关闭</a>
+    <div class="exe_pop_login">
+        <div class="exe_pl_left">
+            <table>
+                <tr>
+                    <td height="30" colspan="4"><span class="exe_span7">请先登录后再保存</span></td>
+                </tr>
+                <tr>
+                    <td>账号：</td>
+                    <td colspan="3"><input name="uname" type="text" class="exe_input4"></td>
+                </tr>
+                <tr>
+                    <td>密码：</td>
+                    <td colspan="3"><input name="pwd" type="password" class="exe_input4"></td>
+                </tr>
+                <tr>
+                    <td height="20"></td>
+                    <td width="27"><input name="" type="checkbox" value=""></td>
+                    <td width="127">下次自动登录</td>
+                    <td><a href="recovery-2012.html" class="exe_link1">忘记密码</a></td>
+                </tr>
+                <tr>
+                    <td height="40"></td>
+                    <td colspan="3">
+                        <button type="button" id="ajax_button" class="exe_input5">登录</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="exe_pl_right">
+            <div class="exe_pl_r1">还没有中文天下帐号<br>赶快注册一个吧！</div>
+            <div class="exe_pl_r2"><a href="signout.html" class="exe_but7">立即注册</a></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div class="per_maincontent material_maincontent">
+    <div id="main">
+        <div class="material_search">
+            <div class="material_s_content">
+                <table>
+                    <form action="/user/seach" method="post" >
+                    <tr>
+                        <td><input name="part" type="text" placeholder="课程搜索 Course search"
+                                   class="material_input1"></td>
+                        <td>
+                            <input type="submit" class="material_but1"
+                                value="搜索 search"/>
+                        </td>
+                    </tr>
+                    </form>
+                </table>
+            </div>
+        </div>
+        <div id="supplier_content" class="supplier_content">
+            <div class="supplier_intro_bot">
+                <div class="jckc_intro_content">
+                    <div class="supplier_bot_l">
+                        <div class="supplier_l_bt">
+                            <ul>
+                                <li id="supplier_lan_btn1" class="selected"><a href="javascript:;"
+                                                                               onclick="tranlan('cn');">中&nbsp;&nbsp;&nbsp;文</a>
+                                </li>
+                                <li id="supplier_lan_btn2"><a href="javascript:;" onclick="tranlan('en');">ENGLISH</a>
+                                </li>
+                                <div class="clear"></div>
+                            </ul>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="supplier_l_list">
+                            <dl>
+                                <dt><label><input name="" type="checkbox" value="" onclick="checkAll('age',this);">
+                                    <span class="supplier_ch">全部年龄级别(后期开发功能！开发中)</span><span class="supplier_en"
+                                                                                             style="display:none;">All Age Group
+</span></label></dt>
+
+                                <dd><label><input name="age" type="checkbox" value="3"> <span
+                                        class="supplier_ch">成人</span><span class="supplier_en" style="display:none;">Mid-High School</span></label>
+                                </dd>
+                                <dd><label><input name="age" type="checkbox" value="4"> <span
+                                        class="supplier_ch">大学</span><span class="supplier_en" style="display:none;">College / Adult</span></label>
+                                </dd>
+                            </dl>
+                            <dl class="supplier_l_dl1">
+                                <dt><label><input name="" type="checkbox" value="" onclick="checkAll('kind',this);">
+                                    <span class="supplier_ch">全部类别</span><span class="supplier_en"
+                                                                               style="display:none;">All Categories</span></label>
+                                </dt>
+                                <dd><label><input name="kind" type="checkbox" value="1"> <span
+                                        class="supplier_ch">系列课程</span><span class="supplier_en" style="display:none;">Series Course</span></label>
+                                </dd>
+                                <dd><label><input name="kind" type="checkbox" value="2"> <span
+                                        class="supplier_ch">短期/特色</span><span class="supplier_en" style="display:none;">Short Term Course</span></label>
+                                </dd>
+
+                            </dl>
+                            <dl class="supplier_l_dl1">
+                                <dt><label><input name="content" type="checkbox" value="10"> <span class="supplier_ch">在线课程</span><span
+                                        class="supplier_en" style="display:none;">Online Course</span></label></dt>
+                            </dl>
+
+
+                        </div>
+                    </div>
+
+                    <div class="supplier_bot_r">
+                        <div class="supplier_search_condition">
+                            <div class="supplier_condition_ch">
+                                <strong class="strong">视频课程：</strong><span id="tiaojian"></span>
+                            </div>
+                            <div class="supplier_condition_en">
+                                <strong class="strong">video course:&nbsp;</strong><span id="supplier_en"></span>
+                            </div>
+                        </div>
+                        <div class="material_search_no-result" style="display:none;" id="show_li">
+                            对不起，没有搜索到相关教材，请确认搜索条件！
+                        </div>
+                        <div class="material_search_results" id="supplier_div">
+                            <ul>
+
+
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $("#pageNo").val("1");
+                                        $("#a_more").hide();
+                                        if (parseInt("3") > 1)
+                                            $("#a_more").show();
+                                        if (parseInt("1") == parseInt("3"))
+                                            $("#a_more").hide();
+                                    });
+                                </script>
+
+
+                                <li th:each="courseList:${courseList}">
+                                    <div class="books_top"  >
+                                        <div class="books_top_l">
+                                            <a href="#" target="_blank">
+                                                <p th:text="${courseList.name}"></p>
+                                            </a>
+                                        </div>
+                                        <div class="books_top_r">
+
+                                            <a  th:href="@{/payment/pay(id=${courseList.id})}" target="_blank" class="special">订&nbsp;&nbsp;&nbsp;&nbsp;阅<br><span>Subscription</span></a>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="books_bot">
+                                        <div class="books_bot_l">
+
+
+                                            <a href="#" target="_blank">
+                                                <img th:src="${courseList.url}" width="210" height="120">
+                                            </a>
+
+                                        </div>
+                                        <div class="books_bot_c">
+                                            <div class="books_bot_c_ch">
+                    <pre th:text="${courseList.introduce}"></pre>
+                                            </div>
+                                            <div class="books_bot_c_en">
+                   <pre th:text="${courseList.introduceEn}"></pre>
+                                            </div>
+                                        </div>
+                                        <div class="books_bot_r">
+                                            <ul>
+                                                <li class="selected"><span class="books_span1">评分 score</span><span
+                                                        class="books_span2" th:text="${courseList.score}"></span></li>
+                                                <li class="selected"><span class="books_span1">教师 teacher</span><span
+                                                        class="books_span2"  th:text="${courseList.teacher}"></span></li>
+                                                <li class="selected"><span class="books_span1">类别 category</span><span
+                                                        class="books_span2"  th:text="${courseList.category}+'adult'"></span></li>
+                                                <li class="selected"><span class="books_span1">价格 price</span><span
+                                                        class="books_span2"  th:text="${courseList.price}+'¥'"></span></li>
+
+                                            </ul>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </li>
+
+
+                            </ul>
+
+                        </div>
+                    </div>
+                    <input type="hidden" value="1" id="pageNo">
+                    <input type="hidden" value="" id="vendorId">
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--analysis begin-->
+<!--<div style="display:none;">
+<script type="text/javascript" src="http://js.tongji.linezing.com/734630/tongji.js"></script>
+<script type="text/javascript" src="/static/js/showDialog.min.js"></script>
+<noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/734630/tongji.gif"/></a></noscript>
+</div>-->
+<div style="display:none;">
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        var pageTracker = _gat._getTracker("UA-5735949-1");
+        pageTracker._trackPageview();
+    </script>
+</div>
+<!--analysis end-->
+<script type="text/javascript">
+
+    var websocket = null;
+    var websocket = null;
+    var ip = returnCitySN["cip"];
+    //判断当前浏览器是否支持WebSocket
+    if('WebSocket' in window){
+        onlinenum = new WebSocket("ws://localhost/face/websocket");
+    }
+    else{
+        alert('Not support websocket')
+    }
+
+    //连接发生错误的回调方法
+    onlinenum.onerror = function(){
+        setMessageInnerHTML("error");
+    };
+
+    //连接成功建立的回调方法
+    onlinenum.onopen = function(event){
+        setMessageInnerHTML("open");
+    }
+
+    //接收到消息的回调方法
+    onlinenum.onmessage = function(event){
+        setMessageInnerHTML(event.data);
+    }
+
+    //连接关闭的回调方法
+    onlinenum.onclose = function(){
+        setMessageInnerHTML("close");
+    }
+
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function(){
+        onlinenum.close();
+    }
+
+
+    //关闭连接
+    function closeWebSocket(){
+        onlinenum.close();
+    }
+
+    //发送消息
+    function send(){
+        var message = document.getElementById('text').value;
+        onlinenum.send(message);
+    }
+
+
+    function TGDialogS(e) {
+        showDialog.show({id: e, bgcolor: "#000", opacity: 40});
+    }
+
+    $(document).ready(function () {
+        /*$("a[href='#']").each(function(i){
+            $(this).click(function(){alert("to be updated!");return false;});
+        });*/
+        $(document).unbind("dblclick");
+    });
+
+    function initSaveBtn(met) {
+        if ("" == "") {
+            $(".exe_but6").attr("href", "javascript:;");
+        } else {
+            $(".exe_but6").attr("href", met);
+        }
+        $(".exe_but6").click(function (event) {
+            //判断是否登录用户。
+            if ("" == "") {
+                $("#ajax_button").unbind("click");
+                $("#ajax_button").bind("click", function () {
+                    ajaxLogin(met);
+                });
+                showDialog.show({id: "login_div", bgcolor: "#000", opacity: 40});
+            } else {
+                $(".exe_but6").attr("href", met);
+            }
+        });
+    }
+
+    //发布前验证登录
+    function ajaxLogin(submitMethod) {
+        submitMethod = (typeof (submitMethod) == 'undefined')
+            ? 'javascript:submit();' : submitMethod;
+        var uname = $("#login_div input[name='uname']");
+        var pwd = $("#login_div input[name='pwd']");
+        if ($.trim(uname.val()) == "") {
+            alert("请输入用户名！");
+            uname.focus();
+            return;
+        }
+        if ($.trim(pwd.val()) == "") {
+            alert("请输入密码！");
+            pwd.focus();
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "http://www.yes-chinese.com/zh-cn/account/ajax/login.html",
+            data: {username: uname.val(), password: pwd.val()},
+            success: function (data) {
+                if (data == "1") {
+                    showDialog.hide();
+                    $(".exe_but6").attr("href", submitMethod);
+                    $(".exe_but6").unbind("click");
+                    if (submitMethod == "javascript:submit();") {
+                        submit();
+                    } else {
+                        save();
+                    }
+                } else {
+                    alert("用户名密码错误！");
+                }
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
+

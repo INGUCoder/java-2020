@@ -1,0 +1,586 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="Classification" CONTENT="Education, Language education, 教育, 语言学习">
+    <meta name="keywords" content="">
+
+    <meta name="description"
+          content="">
+    <link href="http://static.yes-chinese.com/images/favicon.ico" rel="icon" type="image/x-icon"/>
+    <link href="http://static.yes-chinese.com/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link href="http://static.yes-chinese.com/images/favicon.ico" rel="bookmark" type="image/x-icon"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/reset.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/header.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/footer.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/topbar.css"/>
+
+    <link type="text/css" rel="stylesheet" href="/static/css/new_index.css"/>
+
+    <script language="javascript" src="/static/js/jquery-1.4.2.min.js"></script>
+    <script language="javascript" src="/static/js/new_store.js"></script>
+
+    <script type="text/javascript" src="/static/js/login-reg.js"></script>
+
+    <script type="text/javascript" src="/static/js/new_index.js"></script>
+
+    <title>在线汉语学堂 Learning Chinese</title>
+
+    <script type="text/javascript">
+        /*window.onload = (function(){
+        $("#win_pop1").slideDown(1500);
+        var Up=function(){$("#win_pop1").slideUp(1500)}
+        //setTimeout(Up,12000);
+        $(".pop1_close,.pop2_close").click(function(){
+            $("#win_pop1").slideUp(500);
+            $("#win_pop2").slideUp(500);
+            });
+        });
+        function popWindow(id){
+            $("#win_pop1").slideUp(0);
+            $(id).slideDown(0);
+        }*/
+        function validateSigninHead(form) {
+            if (form.username.value == '') {
+                alert("请输入账号！");
+                form.username.focus();
+                return false;
+            }
+            if (form.password.value == '') {
+                alert("请输入密码！");
+                form.password.focus();
+                return false;
+            }
+            return true;
+        }
+
+        $(function () {
+            $("#login_index input").keypress(function (event) {
+                switch (event.keyCode) {
+                    case 13:
+                        $("#login_index").submit();
+                        break;
+                }
+            });
+        });
+    </script>
+    <style>
+        .go_qsky_pop {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 200;
+        }
+
+        .go_qsky_pop img {
+            margin: auto;
+            display: block;
+            margin-top: 15%;
+        }
+
+        .go_qsky_close {
+            background: url(/static/images/go_qsky_close.png) no-repeat;
+            width: 52px;
+            height: 52px;
+            position: fixed;
+            left: calc(50% + 445px);
+            top: 15%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+<div class="go_qsky_pop">
+    <a href="#" target="_blank"><img src="/static/picture/w_con_ch_img1.png" alt=""></a>
+    <div class="go_qsky_close"></div>
+</div>
+<script src="/static/js/jquery-1.4.2.min.js"></script>
+<script>
+    $(function () {
+        $("#s_topbar,#login_div,#content1,#index_links,#footer").css("filter", "blur(3px)");
+    });
+    $(document).on("click", ".go_qsky_close", function () {
+        $(".go_qsky_pop").hide();
+        $("#s_topbar,#login_div,#content1,#index_links,#footer").css("filter", "");
+    })
+</script>
+<!-- 引入工具栏-->
+
+
+<!-- <style type="text/css">
+#s_topbar-summer {
+  background-image: url(static/images/cx-bar.jpg);
+  height: 100px;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+#xx {
+  float: right;
+  cursor: pointer;
+}
+</style>
+<script type="text/javascript">
+	function summer_xx(){
+		var summer=document.getElementById("s_topbar-summer");
+		summer.style.display="none";
+		return false;
+	}
+</script>
+<a href="http://www.yes-chinese.com/zh-cn/event/2015summer.html" target="_blank"><div id="s_topbar-summer"><img src="/static/picture/cx_xx.png" id="xx" width="21" height="20" onclick="return summer_xx()"/></div></a>
+<div style="margin:0 auto;width:980px;font-size:16px;color:red;padding:3px 0;">
+<marquee scrollAmount="10" width="980" onmouseover="stop()" onmouseout="start()">近期有客户反映收到非朗朗中文发来的广告邮件，内含误导、虚假及诋毁信息，请勿轻信。请通过正规渠道和我们联系，其他渠道及邮件内容均不可信。</marquee>
+</div>
+-->
+<div id="s_topbar">
+    <div class="s_topbar">
+        <div class="s_bar_l">
+            <ul>
+                <li class="special"><a href="#"><img
+                        src="" alt=""></a></li>
+                <li id="s_jxgj">
+                    <a href="javascript:;" show_id="s_bar_jxgj">教学资源<br/><span>RESOURCES</span></a>
+                    <a href="#" class="top_link1" title="进入资源"><img
+                            src="/static/picture/w_store_b9.jpg"/></a>
+                </li>
+                <li id="s_jckc">
+                    <a href="javascript:;" show_id="s_bar_jckc">中文教材<br/><span>TEXTBOOKS</span></a>
+                    <a href="#" class="top_link1" title="进入教材"><img
+                            src="/static/picture/w_store_b9.jpg"/></a>
+                </li>
+                <li id="s_tslm">
+                    <a href="javascript:;" show_id="s_bar_tslm">互动课程<br/><span>i-COURSES</span></a>
+                    <a href="#" class="top_link1" title="进入班级"><img
+                            src="/static/picture/w_store_b9.jpg"/></a>
+                </li>
+                <!-- <li class="special2 special3"><a href="javascript:;" class="spe_a">社 区<br /><span>COMMUNITY</span></a></li> -->
+            </ul>
+        </div>
+        <div class="s_bar_c">
+
+            <div id="s_unlogin">
+                <ul>
+
+                    <li class="special"><a href="javascript:;" onclick="loginPop();">登录<br/><span>LOG IN</span></a></li>
+                    <li>
+                        <a href="/pages/signup">注册<br/><span>SIGN UP</span></a>
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+        <div class="s_bar_r">
+            <a class="class_video_but class_r_but1" title=" &#10;  视频帮助 help  &#10; " href="#">视频帮助</a>
+        </div>
+        <div class="clear"></div>
+        <!--资源下拉菜单-->
+        <div id="s_bar_jxgj" class="s_bar_sublist" style="display:none;">
+            <ul>
+
+                <li class="special1"><span class="topbar_span1"><img src="/static/picture/w_store_b12.jpg"
+                                                                     alt=""/></span><a
+                        href="#">在线课堂<br/><span>Suppl. Resources</span></a>
+                </li>
+            </ul>
+        </div>
+        <!--教材下拉菜单-->
+        <div id="s_bar_jckc" class="s_bar_sublist" style="display:none;">
+            <ul>
+                <li><span class="topbar_span1">•</span><a
+                        href="#">系列教材<br/><span>Series Courseware</span></a>
+                </li>
+            </ul>
+        </div>
+        <!--班级下拉菜单-->
+        <div id="s_bar_tslm" class="s_bar_sublist" style="display:none;">
+            <ul>
+                <li class="special1"><span class="topbar_span1">•</span><a
+                        href="#">大学/成人<br/><span>College / Adult Course</span></a>
+                </li>
+            </ul>
+        </div>
+        <!--登录后用户名下拉菜单-->
+        <div id="s_bar_logined" class="s_bar_sublist" style="display:none;">
+            <table width="100%">
+                <tr>
+                    <td width="25%" valign="top">
+                        <div class="s_tools">
+                            <ul>
+                                <li class="t">我的资源<br/><span>My Resources</span></li>
+                                <li><span class="topbar_span1">•</span><a
+                                        href="http://www.yes-chinese.com/reading/list.html">我的阅读<br/><span>My Reading</span></a>
+                                </li>
+                                <li><span class="topbar_span1">•</span><a
+                                        href="http://www.yes-chinese.com/exercise/list.html">我的练习<br/><span>My Vocabulary Cards</span></a>
+                                </li>
+                                <li><span class="topbar_span1">•</span><a
+                                        href="http://www.yes-chinese.com/zh-cn/wordcard/list.html">我的识字卡<br/><span>My Activities</span></a>
+                                </li>
+                                <li class="special1"><span class="topbar_span1">•</span><a
+                                        href="http://www.yes-chinese.com/zh-cn/res/list.html">我的资源组<br/><span>My Resource Group</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td width="25%" valign="top">
+                        <div class="s_bar_course">
+                            <!--<div class="s_bc_no1">
+                                <p class="s_bar_p1">已选用教材<span class="s_bar_p2"><a href="http://www.yes-chinese.com/zh-cn/mall/order/account_recharge.do?h=2012" class="s_bar_link1">购买</a></span></p>
+                                <p class="s_bar_p3">你暂时还没有选用任何课程，请先购买自己喜欢的在线课程。</p>
+                            </div>-->
+                            <ul>
+                                <li class="t">我的课程<br/><span>My Courses</span></li>
+
+
+                                <p class="s_bar_p3">你暂时还没有选用任何课程，请先去教材或课程栏目挑选自己喜欢的课程购买。</p>
+
+                            </ul>
+                        </div>
+                    </td>
+                    <td width="25%" valign="top">
+                        <!--<div class="s_bar_noclass" style="display:none;">
+                            <p class="s_bar_p1">我的班级<br /><span>My Classes</span></p>
+                            <p class="s_bar_p3">你暂时还没加入任何班级，请联系你的老师加入他的班级。</p>
+                        </div>-->
+                        <div class="s_bar_class">
+                            <ul>
+                                <li class="t">我的班级<br/><span>My Classes</span></li>
+
+
+                            </ul>
+                        </div>
+                    </td>
+                    <td width="25%" valign="top" class="td_special1">
+                        <div class="s_center">
+                            <ul>
+                                <li class="t">用户中心<br/><span>Personal Center</span></li>
+                                <li><span class="topbar_span1">•</span><a
+                                        href="http://www.yes-chinese.com/zh-cn/my/home.html">个人首页<br/><span>My Home</span></a>
+                                </li>
+                                <li><span class="topbar_span1">•</span><a
+                                        href="http://www.yes-chinese.com/zh-cn/account2012/user/view.html">账户管理<br/><span>Account Manage</span></a>
+                                </li>
+                                <li><span class="topbar_span1">•</span><a
+                                        href="http://www.yes-chinese.com/zh-cn/account2012/trade/order_list.html">订单管理<br/><span>Order Manage</span></a>
+                                </li>
+                                <li><span class="topbar_span1">•</span><a
+                                        href="http://www.yes-chinese.com/zh-cn/account2012/invite/code.html">推荐管理<br/><span>Recommend Manage</span></a>
+                                </li>
+                                <li class="special1"><span class="topbar_span1">•</span><a
+                                        href="http://www.yes-chinese.com/zh-cn/account2012/signout.html"><strong
+                                        class="strong">退出<br/><span>Log Out</span></strong></a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="login_div" class="exe_release_pop" style="display:none;">
+    <a href="javascript:;" onclick="showDialog.hide()" class="exe_pop_btn">关闭</a>
+    <div class="exe_pop_login">
+        <div class="exe_pl_left">
+            <table>
+                <tr>
+                    <td height="30" colspan="4"><span class="exe_span7">请先登录后再保存</span></td>
+                </tr>
+                <tr>
+                    <td>账号：</td>
+                    <td colspan="3"><input onblur="isUname(this)" name="uname" type="text" class="exe_input4"/></td>
+                </tr>
+                <tr>
+                    <td>密码：</td>
+                    <td colspan="3"><input onblur="isPwd(this)" name="pwd" type="password" class="exe_input4"/></td>
+                </tr>
+                <tr>
+                    <td height="20"></td>
+                    <td><a href="http://www.yes-chinese.com/zh-cn/account/recovery.html?h=2012"
+                           class="exe_link1">忘记密码</a></td>
+                </tr>
+                <tr>
+                    <td height="40"></td>
+                    <td colspan="3">
+                        <button type="button" id="ajax_button" class="exe_input5">登录</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="exe_pl_right">
+            <div class="exe_pl_r1">还没有帐号<br/>赶快注册一个吧！</div>
+            <div class="exe_pl_r2"><a href="signup.html" class="exe_but7">立即注册</a>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div id="content1">
+    <div id="main">
+        <div class="index_contet">
+            <div class="index_con1">
+                <div class="index_unlogin" style="display:block;"></div>
+                <form action="/user/login" method="post"
+                      onsubmit="return validateSigninHead(this)" id="login_index">
+                    <input type="hidden" name="action" value="signin"/>
+                    <input type="hidden" name="version" value="2012"/>
+                    <div class="index_login" style="display:none;">
+                        <div class="index_login_pop">
+                            <div class="index_login_top">
+                                <div class="index_login_bt"><a
+                                        href="/pages/signup">新用户 New User
+                                    >></a></div>
+                            </div>
+                            <div class="index_login_bot">
+                                <div class="i_l_b_top"></div>
+                                <div class="i_l_b_mid">
+                                    <div class="login_m1">
+                                        <p style="display:block;"></p>
+                                    </div>
+                                    <div class="login_m2">
+                                        <table>
+                                            <tr>
+
+                                                <td colspan="3">
+
+                                                    <div class="login_account">
+                                                        <input name="username" id="username1" onblur="checkUserName(this)" type="text" class="login_input1"/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">
+
+                                                    <div class="login_password">
+                                                        <input name="password" onblur="checkPassword(this)" type="password" class="login_input1"/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="login_m3">
+                                        <a href="javascript:;" onclick="$('#login_index').submit();">登录</a>
+                                    </div>
+
+                                </div>
+                                <div class="i_l_b_bot"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="footer">
+    <div id="navigation">
+        <div id="na-center">
+            <div class="blogo">
+
+
+            </div>
+            <div class="na-con">
+                <div class="na-cn">
+                    <div class="introduce">
+                        <div class="ti">
+                            <span class="font_size3">THE BEST CHINESE LEARNING EXPERIENCES</span>
+                        </div>
+
+                    </div>
+                    <div class="nmember">
+                        <div class="ti">
+                            热烈欢迎新朋友 Warmly welcome new friends：
+                        </div>
+                        <div class="" th:each="users:${usersList}">
+
+                                <span th:text="${users.name}+'('+${users.city}+')'">
+								</span>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div id="footnote">
+        <div id="copyright">
+            Copyright © 2020 learning Chinese Inc. All rights reserved.
+        </div>
+        <div id="helper">
+            <li><a href="http://www.yes-chinese.com/zh-cn/support/contact.html?h=2012">联系我们</a>&nbsp;&nbsp;&nbsp;|</li>
+            <li><a href="http://www.yes-chinese.com/zh-cn/about2012/copyright.html">版权声明</a>&nbsp;&nbsp;&nbsp;|</li>
+            <li><a href="http://kzxt.chinakongzi.org/">友情链接</a></li>
+        </div>
+        <div id="website_lan">
+            <ul>
+                <li><a href="#" title="英文版" target="_blank"><img
+                        src="/static/picture/w_home_icon2.jpg" alt=""/></a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<!--analysis begin-->
+<!--<div style="display:none;">
+<script type="text/javascript" src="/static/js/tongji.js"></script>
+<script type="text/javascript" src="/static/js/showdialog.min.js"></script>
+<noscript><a href="http://www.linezing.com"><img src="/static/picture/tongji.gif"/></a></noscript>
+</div>-->
+<div style="display:none;">
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        var pageTracker = _gat._getTracker("UA-5735949-1");
+        pageTracker._trackPageview();
+    </script>
+</div>
+<!--analysis end-->
+<script type="text/javascript">
+
+
+    function checkUserName(obj) {
+        var userName = obj.value;
+        $.ajax({
+            type:'post',
+            url:'[[${basePath}]]/register/checkUserName',
+            data:{
+                'userName':userName,
+            },
+            dataType:'text',
+            success:function (data) {
+                if(data==0){
+                    alert("账号输入错误 Account input error！")
+                }
+
+            },
+            error:function () {
+                window.console.log('失败回调函数');
+
+            }
+
+        });
+
+    }
+
+    function checkPassword(obj) {
+        var passWord = obj.value;
+        var userName = document.getElementById("username1").value;
+
+        $.ajax({
+            type:'post',
+            url:'[[${basePath}]]/login/checkPassWord',
+            data:{
+                'passWord':passWord,
+                'userName':userName,
+
+            },
+            dataType:'text',
+            success:function (data) {
+                if(data==0){
+                    alert("密码输入错误 Incorrect password！")
+                }
+
+            },
+            error:function () {
+                window.console.log('失败回调函数');
+
+            }
+
+        });
+    }
+
+    function TGDialogS(e) {
+        showDialog.show({id: e, bgcolor: "#000", opacity: 40});
+    }
+
+    function isUname(obj){
+        var uname =obj.value;
+
+    }
+
+    function isPwd(obj){
+        var pwd = obj.value;
+
+    }
+
+    $(document).ready(function () {
+        /*$("a[href='#']").each(function(i){
+            $(this).click(function(){alert("to be updated!");return false;});
+        });*/
+        $(document).unbind("dblclick");
+    });
+
+    function initSaveBtn(met) {
+        if ("" == "") {
+            $(".exe_but6").attr("href", "javascript:;");
+        } else {
+            $(".exe_but6").attr("href", met);
+        }
+        $(".exe_but6").click(function (event) {
+            //判断是否登录用户。
+            if ("" == "") {
+                $("#ajax_button").unbind("click");
+                $("#ajax_button").bind("click", function () {
+                    ajaxLogin(met);
+                });
+                showDialog.show({id: "login_div", bgcolor: "#000", opacity: 40});
+            } else {
+                $(".exe_but6").attr("href", met);
+            }
+        });
+    }
+
+    //发布前验证登录
+    function ajaxLogin(submitMethod) {
+        submitMethod = (typeof (submitMethod) == 'undefined')
+            ? 'javascript:submit();' : submitMethod;
+        var uname = $("#login_div input[name='uname']");
+        var pwd = $("#login_div input[name='pwd']");
+        if ($.trim(uname.val()) == "") {
+            alert("请输入用户名！");
+            uname.focus();
+            return;
+        }
+        if ($.trim(pwd.val()) == "") {
+            alert("请输入密码！");
+            pwd.focus();
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "http://www.yes-chinese.com/zh-cn/account/ajax/login.html",
+            data: {username: uname.val(), password: pwd.val()},
+            success: function (data) {
+                if (data == "1") {
+                    showDialog.hide();
+                    $(".exe_but6").attr("href", submitMethod);
+                    $(".exe_but6").unbind("click");
+                    if (submitMethod == "javascript:submit();") {
+                        submit();
+                    } else {
+                        save();
+                    }
+                } else {
+                    alert("用户名密码错误！");
+                }
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

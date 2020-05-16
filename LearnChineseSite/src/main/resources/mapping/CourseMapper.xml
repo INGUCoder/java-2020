@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.CourseMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.domain.Course" >
+    <constructor >
+      <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="teacher" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="category" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="price" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="score" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="introduce" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="introduce_en" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="produce_time" jdbcType="DATE" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, teacher, category, price, score, url, introduce, introduce_en, produce_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectBySearch" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from course
+    where name like '%${name}%'
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from course
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from course
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.domain.Course" >
+    insert into course (id, name, teacher, 
+      category, price, score, 
+      url, introduce, introduce_en, 
+      produce_time)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{teacher,jdbcType=VARCHAR}, 
+      #{category,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{score,jdbcType=REAL}, 
+      #{url,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{introduceEn,jdbcType=VARCHAR}, 
+      #{produceTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.domain.Course" >
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="teacher != null" >
+        teacher,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="introduceEn != null" >
+        introduce_en,
+      </if>
+      <if test="produceTime != null" >
+        produce_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="teacher != null" >
+        #{teacher,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=REAL},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="introduceEn != null" >
+        #{introduceEn,jdbcType=VARCHAR},
+      </if>
+      <if test="produceTime != null" >
+        #{produceTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.domain.Course" >
+    update course
+    <set >
+      <if test="name != null and name !='' " >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="teacher != null and teacher !=''" >
+        teacher = #{teacher,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null and category !=''" >
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null and price !=''" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="score != null and score !=''" >
+        score = #{score,jdbcType=REAL},
+      </if>
+      <if test="url != null and url !=''" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null and introduce !=''" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="introduceEn != null " >
+        introduce_en = #{introduceEn,jdbcType=VARCHAR},
+      </if>
+      <if test="produceTime != null" >
+        produce_time = #{produceTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.domain.Course" >
+    update course
+    set name = #{name,jdbcType=VARCHAR},
+      teacher = #{teacher,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      score = #{score,jdbcType=REAL},
+      url = #{url,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      introduce_en = #{introduceEn,jdbcType=VARCHAR},
+      produce_time = #{produceTime,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

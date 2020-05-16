@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserCommentMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.domain.UserComment">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="neirong" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="comment_status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="push_time" javaType="java.util.Date" jdbcType="DATE" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_name, user_id, neirong, comment_status, push_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_comment
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_comment
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.domain.UserComment">
+    insert into user_comment (id, user_name, user_id,
+      neirong, comment_status, push_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+      #{neirong,jdbcType=VARCHAR}, #{commentStatus,jdbcType=INTEGER}, #{pushTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.domain.UserComment">
+    insert into user_comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="neirong != null">
+        neirong,
+      </if>
+      <if test="commentStatus != null">
+        comment_status,
+      </if>
+      <if test="pushTime != null">
+        push_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="neirong != null">
+        #{neirong,jdbcType=VARCHAR},
+      </if>
+      <if test="commentStatus != null">
+        #{commentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="pushTime != null">
+        #{pushTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.domain.UserComment">
+    update user_comment
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="neirong != null">
+        neirong = #{neirong,jdbcType=VARCHAR},
+      </if>
+      <if test="commentStatus != null">
+        comment_status = #{commentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="pushTime != null">
+        push_time = #{pushTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.domain.UserComment">
+    update user_comment
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      neirong = #{neirong,jdbcType=VARCHAR},
+      comment_status = #{commentStatus,jdbcType=INTEGER},
+      push_time = #{pushTime,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+
+  <select id="selectAllByStatus" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_comment
+    where comment_status = 2
+  </select>
+
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_comment
+  </select>
+
+
+
+
+
+</mapper>

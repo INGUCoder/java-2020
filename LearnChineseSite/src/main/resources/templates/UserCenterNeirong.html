@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>原创中心 - Learning Chinese</title>
+    <link rel="stylesheet" href="/static/center/style.css" type="text/css"/>
+</head>
+
+
+<body>
+<h2 th:tetx="${userUgc.title}"></h2>
+<p class="one gray">时间:<em th:text="${#dates.format(userUgc.pushTime,'yyyy-MM-dd')}"></em>&nbsp; 作者:<em th:text="${users.name}"></em></p>
+<hr/>
+<p th:text="${userUgc.neirong}"></p>
+
+
+</body>
+</html>

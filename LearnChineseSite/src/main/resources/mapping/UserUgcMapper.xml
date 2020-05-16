@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UserUgcMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.domain.UserUgc" >
+    <constructor >
+      <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="neirong" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_limit" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="push_time" jdbcType="DATE" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, user_id, neirong, user_limit, push_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_ugc
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user_ugc
+  </select>
+
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user_ugc
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByStatus" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user_ugc
+    where user_limit = 2
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user_ugc
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.domain.UserUgc" >
+    insert into user_ugc (id, title, user_id, 
+      neirong, user_limit, push_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{neirong,jdbcType=VARCHAR}, #{userLimit,jdbcType=INTEGER}, #{pushTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.domain.UserUgc" >
+    insert into user_ugc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="neirong != null" >
+        neirong,
+      </if>
+      <if test="userLimit != null" >
+        user_limit,
+      </if>
+      <if test="pushTime != null" >
+        push_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="neirong != null" >
+        #{neirong,jdbcType=VARCHAR},
+      </if>
+      <if test="userLimit != null" >
+        #{userLimit,jdbcType=INTEGER},
+      </if>
+      <if test="pushTime != null" >
+        #{pushTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.domain.UserUgc" >
+    update user_ugc
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="neirong != null" >
+        neirong = #{neirong,jdbcType=VARCHAR},
+      </if>
+      <if test="userLimit != null" >
+        user_limit = #{userLimit,jdbcType=INTEGER},
+      </if>
+      <if test="pushTime != null" >
+        push_time = #{pushTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.domain.UserUgc" >
+    update user_ugc
+    set title = #{title,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      neirong = #{neirong,jdbcType=VARCHAR},
+      user_limit = #{userLimit,jdbcType=INTEGER},
+      push_time = #{pushTime,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
