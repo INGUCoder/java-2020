@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.dianweiTtempleMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.domain.dianweiTtemple" >
+    <constructor >
+      <arg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="q1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="q2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="q3" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="q4" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="q5" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="q6" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="q7" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="q8" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, type, q1, q2, q3, q4, q5, q6, q7, q8
+  </sql>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List" />
+  from dianwei_temple
+</select>
+
+  <select id="selectById" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dianwei_temple
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from dianwei_temple
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.domain.dianweiTtemple">
+    update
+    dianwei_temple
+    <set>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type =  #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="q1 != null" >
+        q1 = #{q1,jdbcType=VARCHAR},
+      </if>
+      <if test="q2 != null" >
+        q2 = #{q2,jdbcType=VARCHAR},
+      </if>
+      <if test="q3 != null" >
+        q3 = #{q3,jdbcType=VARCHAR},
+      </if>
+      <if test="q4 != null" >
+        q4 = #{q4,jdbcType=VARCHAR},
+      </if>
+      <if test="q5 != null" >
+        q5 = #{q5,jdbcType=VARCHAR},
+      </if>
+      <if test="q6 != null" >
+        q6 = #{q6,jdbcType=VARCHAR},
+      </if>
+      <if test="q7 != null" >
+        q7 = #{q7,jdbcType=VARCHAR},
+      </if>
+      <if test="q8 != null" >
+        q8 = #{q8,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+
+  </update>
+
+
+  <insert id="insert" parameterType="com.example.demo.domain.dianweiTtemple" >
+    insert into dianwei_temple (id, name, type, 
+      q1, q2, q3, q4, 
+      q5, q6, q7, q8, 
+      create_time)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{q1,jdbcType=VARCHAR}, #{q2,jdbcType=VARCHAR}, #{q3,jdbcType=VARCHAR}, #{q4,jdbcType=VARCHAR}, 
+      #{q5,jdbcType=VARCHAR}, #{q6,jdbcType=VARCHAR}, #{q7,jdbcType=VARCHAR}, #{q8,jdbcType=VARCHAR}
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.domain.dianweiTtemple" >
+    insert into dianwei_temple
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="q1 != null" >
+        q1,
+      </if>
+      <if test="q2 != null" >
+        q2,
+      </if>
+      <if test="q3 != null" >
+        q3,
+      </if>
+      <if test="q4 != null" >
+        q4,
+      </if>
+      <if test="q5 != null" >
+        q5,
+      </if>
+      <if test="q6 != null" >
+        q6,
+      </if>
+      <if test="q7 != null" >
+        q7,
+      </if>
+      <if test="q8 != null" >
+        q8,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="q1 != null" >
+        #{q1,jdbcType=VARCHAR},
+      </if>
+      <if test="q2 != null" >
+        #{q2,jdbcType=VARCHAR},
+      </if>
+      <if test="q3 != null" >
+        #{q3,jdbcType=VARCHAR},
+      </if>
+      <if test="q4 != null" >
+        #{q4,jdbcType=VARCHAR},
+      </if>
+      <if test="q5 != null" >
+        #{q5,jdbcType=VARCHAR},
+      </if>
+      <if test="q6 != null" >
+        #{q6,jdbcType=VARCHAR},
+      </if>
+      <if test="q7 != null" >
+        #{q7,jdbcType=VARCHAR},
+      </if>
+      <if test="q8 != null" >
+        #{q8,jdbcType=VARCHAR},
+      </if>
+
+    </trim>
+  </insert>
+</mapper>

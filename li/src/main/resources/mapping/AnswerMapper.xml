@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.AnswerMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.domain.Answer" >
+    <constructor >
+      <arg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="template_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="location_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="a1" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="a2" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="a3" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="a4" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="a5" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="a6" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="a7" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="a8" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="total" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="minScore" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    id, template_id, user_id, location_name, a1, a2, a3, a4, a5, a6, a7, a8, total, status, minScore
+  </sql>
+
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from answer
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByStatus" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from answer
+    where status = 1
+  </select>
+
+  <insert id="insert" parameterType="com.example.demo.domain.Answer" >
+    insert into answer (id, template_id, user_id, 
+      location_name, a1, a2, 
+      a3, a4, a5, a6, 
+      a7, a8, total,minScore)
+    values (#{id,jdbcType=VARCHAR}, #{templateId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{locationName,jdbcType=VARCHAR}, #{a1,jdbcType=INTEGER}, #{a2,jdbcType=INTEGER}, 
+      #{a3,jdbcType=INTEGER}, #{a4,jdbcType=INTEGER}, #{a5,jdbcType=INTEGER}, #{a6,jdbcType=INTEGER}, 
+      #{a7,jdbcType=INTEGER}, #{a8,jdbcType=INTEGER}, #{total,jdbcType=INTEGER}, #{minScore,jdbcType=INTEGER})
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.domain.Answer">
+    update answer
+    <set>
+      <if test="templateId != null" >
+        template_id = #{templateId,jdbcType=VARCHAR},
+      </if>
+      <if test="locationName != null" >
+        location_name= #{locationName,jdbcType=VARCHAR},
+      </if>
+      <if test="a1 != null" >
+        a1 = #{a1,jdbcType=INTEGER},
+      </if>
+      <if test="a2 != null" >
+        a2 =  #{a2,jdbcType=INTEGER},
+      </if>
+      <if test="a3 != null" >
+        a3 = #{a3,jdbcType=INTEGER},
+      </if>
+      <if test="a4 != null" >
+        a4 = #{a4,jdbcType=INTEGER},
+      </if>
+      <if test="a5 != null" >
+        a5 =  #{a5,jdbcType=INTEGER},
+      </if>
+      <if test="a6 != null" >
+        a6 = #{a6,jdbcType=INTEGER},
+      </if>
+      <if test="a7 != null" >
+        a7 = #{a7,jdbcType=INTEGER},
+      </if>
+      <if test="a8 != null" >
+        a8 = #{a8,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        total=  #{total,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status=  #{status,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        minScore=  #{minScore,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+  <resultMap id="answerAndDianweiMap" type="java.util.Map">
+    <result property="id" column="id"></result>
+    <result property="locationName" column="location_name"></result>
+    <result property="total" column="total"></result>
+    <result property="name" column="name"></result>
+    <result property="type" column="type"></result>
+    <result property="status" column="status"></result>
+  </resultMap>
+
+  <select id="selectByUserId" resultMap="answerAndDianweiMap">
+    select answer.id, answer.location_name, answer.total,dianwei_temple.name,dianwei_temple.type,answer.status
+    from answer
+    inner join dianwei_temple on answer.template_id = dianwei_temple.id
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from answer
+  </select>
+
+  <select id="selectAllByzPaiming" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from answer
+    order by answer.total desc
+  </select>
+
+
+  <select id="selectAllByzTuchu" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from answer order by answer.total asc limit 10
+  </select>
+
+  <select id="selectAllByShequ" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from answer order by answer.total asc limit 5
+  </select>
+
+  <insert id="insertSelective" parameterType="com.example.demo.domain.Answer" >
+    insert into answer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="templateId != null" >
+        template_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="locationName != null" >
+        location_name,
+      </if>
+      <if test="a1 != null" >
+        a1,
+      </if>
+      <if test="a2 != null" >
+        a2,
+      </if>
+      <if test="a3 != null" >
+        a3,
+      </if>
+      <if test="a4 != null" >
+        a4,
+      </if>
+      <if test="a5 != null" >
+        a5,
+      </if>
+      <if test="a6 != null" >
+        a6,
+      </if>
+      <if test="a7 != null" >
+        a7,
+      </if>
+      <if test="a8 != null" >
+        a8,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="locationName != null" >
+        #{locationName,jdbcType=VARCHAR},
+      </if>
+      <if test="a1 != null" >
+        #{a1,jdbcType=INTEGER},
+      </if>
+      <if test="a2 != null" >
+        #{a2,jdbcType=INTEGER},
+      </if>
+      <if test="a3 != null" >
+        #{a3,jdbcType=INTEGER},
+      </if>
+      <if test="a4 != null" >
+        #{a4,jdbcType=INTEGER},
+      </if>
+      <if test="a5 != null" >
+        #{a5,jdbcType=INTEGER},
+      </if>
+      <if test="a6 != null" >
+        #{a6,jdbcType=INTEGER},
+      </if>
+      <if test="a7 != null" >
+        #{a7,jdbcType=INTEGER},
+      </if>
+      <if test="a8 != null" >
+        #{a8,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

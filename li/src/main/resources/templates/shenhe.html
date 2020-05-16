@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
+<head>
+    <title>审核</title>
+    <meta http-equiv="Content-Type" content="textml; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="/static/css/index.css" rel="stylesheet" type="text/css" media="all" />
+
+</head>
+<style>
+    .nav_caid ul{
+        padding:10px 0;
+    }
+    .nav_caid ul li{
+        width:25%;
+        margin-top:10px;
+    }
+</style>
+<body>
+    <div class="wrapper">
+        <div class="head">
+            <div class="head_tb">
+                <!--<i class="fa"><a></a></i>-->
+                <h1>用户申请记录</h1>
+
+            </div>
+        </div>
+
+        <div class="index_nr">
+
+            <div class="Monthly">
+                <div class="in_news">
+                    <h2>用户注册申请记录</h2>
+                    <ul th:each="user:${usersList}">
+                        <li>
+                            <i><img src="/static/images/44.png"></i>
+                            <div class="gjy">
+                                <span th:text="'姓名:'+${user.name}"></span>
+                               <p th:text="'账号:'+${user.account}"></p>
+                                <p th:text="${'项目组:'+user.userGroup}"></p>
+                            </div>
+                            <a th:href="@{/admin/passUser(id=${user.id})}">立即通过</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="in_news">
+                    <h2>用户修改点位信息申请记录</h2>
+                    <ul th:each="info:${answers}">
+                        <li>
+                            <i><img src="/static/images/news1.png"></i>
+                            <div class="gjy">
+                                <span th:text="'地点名称:'+${info.locationName}"></span>
+                                <p th:text="'申请人:'+${info.templateId}"></p>
+                            </div>
+                            <!--th:href="@{/answer/index(id=${dianweiTtemple.id})}"-->
+
+                            <a th:href="@{/admin/pass/alter/dianwei(id=${info.id})}">立即通过</a>
+
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="bottom">
+        <a href="/pages/adminindex">
+            <i class="icon icon_f1"></i>
+            首页
+        </a>
+
+        <a href="/admin/pages/addTemPlate">
+            <i class="icon icon_f2"></i>
+            新增点位模板
+        </a>
+
+        <a href="/admin/pages/alterTemPlate">
+            <i class="icon icon_f3"></i>
+            修改点位模板
+        </a>
+
+        <a href="/pages/adminMine">
+            <i class="icon icon_f4"></i>
+            管理中心
+        </a>
+    </div>
+
+    </div>
+</body>
+</html>

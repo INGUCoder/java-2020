@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>添加点位模板</title>
+        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+        <meta content="telephone=no" name="format-detection"/>
+        <link href="/static/css/login.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+
+    </head>
+    <body>
+        <section class="aui-flexView">
+            <header class="aui-navBar aui-navBar-fixed b-line">
+                <a href="javascript:;" class="aui-navBar-item" onclick="javascript:history.back(-1);">
+                    <i class="icon icon-return"></i>
+                </a>
+                <div class="aui-center">
+                    <span class="aui-center-title">添加点位模板</span>
+                </div>
+            </header>
+            <section class="aui-scrollView">
+                <div class="aui-code-box">
+                    <form  id="loginForm" action="/admin/addDianweiTemplate" method="post">
+                        <p class="aui-code-line">
+                            <input type="text" class="aui-code-line-input" value="" name="name"  id="group0" autocomplete="off" placeholder="请输入模板名称"/>
+                        </p>
+                        <p class="aui-code-line">
+                            <input type="text" class="aui-code-line-input" value="" name="type"  id="group" autocomplete="off" placeholder="请输入定位类型"/>
+                        </p>
+                        <p class="aui-code-line">
+                            <input type="text" class="aui-code-line-input" value="" name="q1"  id="group1" autocomplete="off" placeholder="请输入问题1"/>
+                        </p>
+                        <p class="aui-code-line">
+                            <input type="text" class="aui-code-line-input" value="" name="q2"  id="group2" autocomplete="off" placeholder="请输入问题2"/>
+                        </p>
+                        <p class="aui-code-line">
+                            <input type="text" class="aui-code-line-input" value="" name="q3"  id="group3" autocomplete="off" placeholder="请输入问题3"/>
+                        </p>
+                        <p class="aui-code-line">
+                            <input type="text" class="aui-code-line-input" value="" name="q4"  id="group4" autocomplete="off" placeholder="请输入问题4"/>
+                        </p>
+                        <p class="aui-code-line">
+                            <input type="text" class="aui-code-line-input" value="" name="q5"  id="group5" autocomplete="off" placeholder="请输入问题5"/>
+                        </p>
+                        <p class="aui-code-line">
+                            <input type="text" class="aui-code-line-input" value="" name="q6"  id="group6" autocomplete="off" placeholder="请输入问题6"/>
+                        </p>
+                        <p class="aui-code-line">
+                            <input type="text" class="aui-code-line-input" value="" name="q7"  id="group7" autocomplete="off" placeholder="请输入问题7"/>
+                        </p>
+                        <p class="aui-code-line">
+                            <input type="text" class="aui-code-line-input" value="" name="q8"  id="group8" autocomplete="off" placeholder="请输入问题8"/>
+                        </p>
+                        <div class="aui-flex-links">
+                           <!-- <a href="javascript:;">
+                                <label class="cell-right">
+                                    <input type="checkbox" value="1" name="checkbox">
+                                    <i class="cell-checkbox-icon"></i>记住密码
+                                </label>
+                            </a> -->
+                        </div>
+                        <div class="aui-code-btn">
+                            <button>添加</button>
+                        </div>
+                    </form>
+                </div>
+
+            </section>
+        </section>
+
+        <script type="text/javascript" src="/static/js/login.js"></script>
+<script>
+
+
+    function doSubmitForm() {
+        var form = document.getElementById('loginForm');
+        form.submit();
+    }
+
+
+
+
+</script>
+    </body>
+</html>

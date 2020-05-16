@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>添加账号</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link href="/static/css/login.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+
+</head>
+<body>
+
+
+<section class="aui-flexView">
+    <header class="aui-navBar aui-navBar-fixed b-line">
+
+        <a href="/pages/index" class="aui-navBar-item">
+            <i class="icon icon-sys"></i>添加用户
+        </a>
+    </header>
+    <section class="aui-scrollView">
+        <div class="aui-code-box">
+            <form action="/admin/add/user" id="registerForm" method="post">
+                <p class="aui-code-line">
+                    <input type="text" class="aui-code-line-input" name="username" value="" id="name"
+                           placeholder="请输入账号"/>
+                </p>
+                <p class="aui-code-line">
+                    <input type="password" id="psw" name="password" class="aui-code-line-input" placeholder="请输入密码"
+                           value="">
+                </p>
+                <p class="aui-code-line">
+                    <input type="text" class="aui-code-line-input" name="phone" value="" onblur="checkPhone(this)" id="phone1" autocomplete="off"
+                           placeholder="请输入手机号"/>
+                </p>
+                <p class="aui-code-line">
+                    <input type="text" class="aui-code-line-input"  onblur="checkEmail(this)" name="email" value="" id="email"
+                           placeholder="请输入邮箱"/>
+                </p>
+
+                <p class="aui-code-line">
+                    <input type="text" class="aui-code-line-input" name="group" value="" id="group" autocomplete="off"
+                           placeholder="请输入项目小组"/>
+                </p>
+                <p class="aui-code-line">
+
+                    <input type="text" class="aui-code-line-input" name="realName" value="" id="realName"
+                           autocomplete="off" placeholder="请输入姓名"/>
+                </p>
+
+                <div class="aui-code-btn">
+                    <button type="button" onclick="doSubmitForm()">添加</button>
+                </div>
+            </form>
+        </div>
+
+    </section>
+</section>
+
+<script type="text/javascript" src="/static/js/register.js"></script>
+
+
+</body>
+
+<script>
+    function doSubmitForm() {
+        var form = document.getElementById('registerForm');
+        form.submit();
+    }
+
+    function checkPhone(obj) {
+        console.log(obj.value);
+        var phone = obj.value;
+
+        if(!(/^1[3456789]\d{9}$/.test(phone))) {
+            alert("手机号码有误,请重新输入!");
+            return false;
+        }
+    }
+
+    function checkEmail(obj) {
+        console.log(obj.value);
+        var email = obj.value;
+
+        if(!(/^([a-zA-Z0-9]+[_|-|.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|-|.]?)*[a-zA-Z0-9]+.[a-zA-Z]{2,3}$/gi.test(email))) {
+            alert("电子邮箱有误,请重新输入!");
+            return false;
+        }
+    }
+
+
+</script>
+
+</html>
