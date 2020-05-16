@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carbuybuy.carbuybuy.mapper.CarsMapper">
+    <resultMap id="BaseResultMap" type="com.carbuybuy.carbuybuy.entity.Cars">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="introduce" property="introduce" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="fromAddress" property="fromAddress" jdbcType="VARCHAR"/>
+        <result column="level" property="level" jdbcType="VARCHAR"/>
+        <result column="costType" property="costType" jdbcType="VARCHAR"/>
+        <result column="engine" property="engine" jdbcType="VARCHAR"/>
+        <result column="changeSpeed" property="changeSpeed" jdbcType="VARCHAR"/>
+        <result column="speed" property="speed" jdbcType="VARCHAR"/>
+        <result column="types" property="types" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, name, introduce, price, url, fromAddress, level, costType, engine, changeSpeed, speed, types
+    </sql>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cars
+    </select>
+
+    <select id="selectById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cars
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByTypes" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cars
+        where types = #{types,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByName" resultMap="BaseResultMap">
+        select
+        *
+        from cars
+        <where>
+            <if test="name != null"></if>
+            name like CONCAT('%','${name}','%' )
+        </where>
+    </select>
+
+    <insert id="insertCar" parameterType="com.carbuybuy.carbuybuy.entity.Cars">
+
+        insert into cars(name,introduce,price,url,fromAddress,level,costType,engine,changeSpeed,speed,types)
+        values (#{name,jdbcType=VARCHAR},#{introduce,jdbcType=VARCHAR},#{price,jdbcType=VARCHAR},
+        #{url,jdbcType=VARCHAR},#{fromAddress,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR}
+        ,#{costType,jdbcType=VARCHAR},#{engine,jdbcType=VARCHAR},
+        #{changeSpeed,jdbcType=VARCHAR},#{speed,jdbcType=VARCHAR},#{types,jdbcType=INTEGER})
+
+    </insert>
+
+    <delete id="deleteCar" parameterType="integer">
+        delete from cars where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+</mapper>

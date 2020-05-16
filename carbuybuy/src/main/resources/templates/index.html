@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="UTF-8">
+		<title>车买买</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	</head>
+	<body>
+	<!-- start header -->
+		<header>
+			<div class="top center">
+				<div class="left fl">
+
+				</div>
+				<div class="right fr">
+					<div class="gouwuche fr"><a href="/myCenter/index">会员中心</a></div>
+					<div class="fr">
+						<ul>
+							<li th:text="${user.username}">&nbsp;</li>
+
+							<!--
+							<li><a href="#" target="_blank" >注册</a></li>
+							<li>|</li>
+							-->
+							<!--<li><a href="">消息通知</a></li>-->
+						</ul>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</header>
+	<!--end header -->
+
+<!-- start banner_x -->
+		<div class="banner_x center">
+			<a href="./index.html" target="_blank"><div class="logo fl"></div></a>
+			<a href=""><div class="ad_top fl"></div></a>
+			<div class="nav fl">
+				<ul>
+					<li><a href="./liebiao.html" target="_blank"</a></li>
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
+				</ul>
+			</div>
+			<div class="search fr">
+				<form action="/cars/search" method="post">
+					<div class="text fl">
+						<input type="text" class="shuru" id="name" name="name"  />
+					</div>
+					<div class="submit fl">
+						<input type="submit" class="sousuo"/>
+					</div>
+					<div class="clear"></div>
+				</form>
+				<div class="clear"></div>
+			</div>
+		</div>
+<!-- end banner_x -->
+
+	<!-- start banner_y -->
+
+
+		<div class="sub_banner center">
+			<div th:each="cars6:${cars6}">
+				<div class="datu fl"><a th:href="@{/cars/index(id=${cars6.id})}"><img th:src="@{${cars6.url}}" alt=""></a></div>
+			</div>
+
+			<div class="clear"></div>
+		</div>
+	<!-- end banner -->
+	<div class="tlinks"></div>
+
+	<!-- start danpin -->
+		<div class="danpin center">
+			
+			<div class="biaoti center">热门车</div>
+			<div class="main center">
+				<div th:each="cars1:${cars1}" class="mingxing fl">
+					<div class="sub_mingxing"><a th:href="@{/cars/index(id=${cars1.id})}"><img th:src="@{${cars1.url}}" alt=""></a></div>
+					<div class="pinpai"><p th:text="${cars1.name}"></p></div>
+					<div class="youhui"><p th:text="${cars1.introduce}"></p></div>
+					<div class="jiage"><p th:text="${cars1.price}"></p></div>
+				</div>
+
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="danpin center">
+
+		<div class="biaoti center">豪华车</div>
+		<div class="main center">
+			<div th:each="cars2:${cars2}" class="mingxing fl">
+				<div class="sub_mingxing"><a th:href="@{/cars/index(id=${cars2.id})}"><img th:src="@{${cars2.url}}" alt=""></a></div>
+				<div class="pinpai"><p th:text="${cars2.name}"></p></div>
+				<div class="youhui"><p th:text="${cars2.introduce}"></p></div>
+				<div class="jiage"><p th:text="${cars2.price}"></p></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+		<div class="danpin center">
+
+		<div class="biaoti center">小型/其他</div>
+		<div class="main center">
+			<div th:each="cars3:${cars3}" class="mingxing fl">
+				<div class="sub_mingxing"><a th:href="@{/cars/index(id=${cars3.id})}"><img th:src="@{${cars3.url}}" alt=""></a></div>
+				<div class="pinpai"><p th:text="${cars3.name}"></p></div>
+				<div class="youhui"><p th:text="${cars3.introduce}"></p></div>
+				<div class="jiage"><p th:text="${cars3.price}"></p></div>
+			</div>
+
+			<div class="clear"></div>
+		</div>
+	</div>
+		<div class="danpin center">
+		<div class="biaoti center">商用车</div>
+		<div class="main center">
+			<div th:each="cars4:${cars4}" class="mingxing fl">
+				<div class="sub_mingxing"><a th:href="@{/cars/index(id=${cars4.id})}"><img th:src="@{${cars4.url}}" alt=""></a></div>
+				<div class="pinpai"><p th:text="${cars4.name}"></p></div>
+				<div class="youhui"><p th:text="${cars4.introduce}"></p></div>
+				<div class="jiage"><p th:text="${cars4.price}"></p></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	    <div class="danpin center">
+		<div class="biaoti center">猜你喜欢</div>
+		<div class="main center">
+			<div th:each="cars5:${cars5}" class="mingxing fl">
+				<div class="sub_mingxing"><a th:href="@{/cars/index(id=${cars5.id})}"><img th:src="@{${cars5.url}}" alt=""></a></div>
+				<div class="pinpai"><p th:text="${cars5.name}"></p></div>
+				<div class="youhui"><p th:text="${cars5.introduce}"></p></div>
+				<div class="jiage"><p th:text="${cars5.price}"></p></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+
+		<footer class="mt20 center">
+			<div>©carBuyBuy 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2014]0059-0009号</div>
+			<div>违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</div>
+		</footer>
+	</body>
+</html>

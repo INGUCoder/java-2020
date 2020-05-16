@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>车买买后台管理系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/static/admin/css/font.css">
+    <link rel="stylesheet" href="/static/admin/css/xadmin.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/admin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/admin/js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
+  <body>
+    <div class="x-body">
+        <form class="layui-form">
+          <div class="layui-form-item">
+              <label for="carName" class="layui-form-label">
+                  <span class="x-red">*</span>汽车名
+              </label>
+              <div class="layui-input-inline">
+                  <input type="text" id="carName" name="carName" required=""
+                  autocomplete="off" class="layui-input" >
+              </div>
+          </div>
+
+            <div class="layui-form-item">
+                <label for="types" class="layui-form-label">
+                    <span class="x-red">*</span>首页类别
+                </label>
+                <div class="layui-input-inline">
+                    <input id="types" name="types" required=""
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    1 热门车 2 豪华车 3 小型或其他 4 商用车 5 猜你喜欢 6 搜索框下面的汽车
+                </div>
+            </div>
+
+          <div class="layui-form-item">
+              <label for="fromAddress" class="layui-form-label">
+                  <span class="x-red">*</span>厂商
+              </label>
+              <div class="layui-input-inline">
+                  <input type="text" id="fromAddress" name="fromAddress" required=""
+                  autocomplete="off" class="layui-input">
+              </div>
+          </div>
+
+            <div class="layui-form-item">
+                <label for="level" class="layui-form-label">
+                    <span class="x-red">*</span>级别
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="level" name="level" required=""
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label for="costType" class="layui-form-label">
+                    <span class="x-red">*</span>能源类型
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="costType" name="costType" required=""
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label for="engine" class="layui-form-label">
+                    <span class="x-red">*</span>发动机
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="engine" name="engine" required=""
+                           autocomplete="off" class="layui-input" />
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label for="changeSpeed" class="layui-form-label">
+                    <span class="x-red">*</span>变速箱
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="changeSpeed" name="changeSpeed" required=""
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label for="speed" class="layui-form-label">
+                    <span class="x-red">*</span>官方实测0-100KM/h加速(s)
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="speed" name="speed" required=""
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label for="url" class="layui-form-label">
+                    <span class="x-red">*</span>产品展示图片地址
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="url" name="url" required=""
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                </label>
+                <button  class="layui-btn" onmousedown="addCar()" onmouseup="addCar()" >
+                    增加
+                </button>
+            </div>
+      </form>
+    </div>
+
+
+
+
+  </body>
+
+  <script>
+
+
+      //监听提交
+
+      function addCar() {
+          var carName = document.getElementById("carName").value;
+          console.log(carName+"test!----")
+          var types = document.getElementById("types").value;
+          var introduce = document.getElementById("introduce").value;
+          var price = document.getElementById("price").value;
+          var fromAddress = document.getElementById("fromAddress").value;
+          var level = document.getElementById("level").value;
+          var costType = document.getElementById("costType").value;
+          var engine = document.getElementById("engine").value;
+          var changeSpeed = document.getElementById("changeSpeed").value;
+          var speed = document.getElementById("speed").value;
+          var url = document.getElementById("url").value;
+
+          //发异步
+          $.ajax({
+
+              type: 'post',
+              url: '[[${basePath}]]/admin/product/add',
+              data: {
+                  'carName': carName,
+                  'types': types,
+                  'introduce': introduce,
+                  'price': price,
+                  'fromAddress': fromAddress,
+                  'level': level,
+                  'costType': costType,
+                  'engine': engine,
+                  'changeSpeed': changeSpeed,
+                  'speed': speed,
+                  'url': url,
+
+              },
+              dataType: 'text',
+              success: function (data) {
+                  if (data == 1) {
+                      layer.alert('添加汽车产品成功!', {icon: 6});
+                  }
+                  layer.alert('添加汽车产品成功!', {icon: 6});
+                  window.console.log('成功回调函数');
+
+              },
+              error: function () {
+                  layer.alert('添加汽车产品失败！', {icon: 6});
+                  window.console.log('失败回调函数');
+              }
+          })
+      }
+
+
+  </script>
+
+
+</html>

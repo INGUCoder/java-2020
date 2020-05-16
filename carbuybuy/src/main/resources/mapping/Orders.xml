@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carbuybuy.carbuybuy.mapper.OrdersMapper">
+    <resultMap id="BaseResultMap" type="com.carbuybuy.carbuybuy.entity.Orders">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="userId" property="userId" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="carId" property="carId" jdbcType="INTEGER"/>
+        <result column="ordertime" property="orderTime" jdbcType="DATE"/>
+        <result column="orderId" property="orderId" jdbcType="VARCHAR"/>
+        <result column="carName" property="carName" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="VARCHAR"/>
+        <result column="orderForUserName" property="orderForUserName" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, userId, name, address, phone, carId, ordertime, orderId, carName, price, orderForUserName, status
+    </sql>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+    </select>
+
+    <select id="selectById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+
+
+    <insert id="insert" parameterType="com.carbuybuy.carbuybuy.entity.Orders">
+        insert into orders(userId,name,address,phone,carId,ordertime,carName,orderId,price,orderForUserName,status)
+        values (#{userId,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+        #{phone,jdbcType=VARCHAR},#{carId,jdbcType=VARCHAR}, now(), #{carName,jdbcType=VARCHAR},
+        #{orderId,jdbcType=VARCHAR},
+        #{price,jdbcType=VARCHAR},
+        #{orderForUserName,jdbcType=VARCHAR},
+        #{status,jdbcType=INTEGER})
+
+    </insert>
+
+    <select id="selectByOrderId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+        where orderId = #{orderId,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updateOrderStatus" parameterType="com.carbuybuy.carbuybuy.entity.Orders">
+    update  orders
+    set status=#{status,jdbcType=INTEGER}
+    where orderId= #{orderId,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="deleteOrder" parameterType="com.carbuybuy.carbuybuy.entity.Orders">
+        delete from orders where orderId= #{orderId,jdbcType=VARCHAR}
+    </delete>
+
+
+
+</mapper>

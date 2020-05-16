@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carbuybuy.carbuybuy.mapper.UserOrderMapper">
+    <resultMap id="BaseResultMap" type="com.carbuybuy.carbuybuy.entity.UserOrder">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="userId" property="userId" jdbcType="VARCHAR"/>
+        <result column="carId" property="carId" jdbcType="INTEGER"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="carName" property="carName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, userId, carId, url, carName
+    </sql>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_order
+    </select>
+
+    <select id="selectById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_order
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from  user_order
+        where userId= #{userId,jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="com.carbuybuy.carbuybuy.entity.UserOrder">
+
+        insert into user_order(userId,carId,url,carName)
+        values (#{userId,jdbcType=VARCHAR},#{carId,jdbcType=INTEGER},#{url,jdbcType=VARCHAR},#{carName,jdbcType=VARCHAR})
+
+    </insert>
+
+</mapper>

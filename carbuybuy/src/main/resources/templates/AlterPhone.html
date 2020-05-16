@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="order by dede58.com"/>
+    <title>车买买</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/login.css">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js"></script>
+
+</head>
+<body>
+<form method="post">
+    <div class="regist">
+        <div class="regist_center">
+            <div class="regist_top">
+                <div class="left fl">修改手机号</div>
+                <div class="right fr"><a href="./index.html" target="_self">车买买</a></div>
+                <div class="clear"></div>
+                <div class="xian center"></div>
+            </div>
+            <div class="regist_main center">
+
+                <div class="username">手&nbsp;&nbsp;机&nbsp;&nbsp;号:&nbsp;&nbsp;<input class="shurukuang" type="text"
+                                                                                     id="phone" name="phone"
+                                                                                     placeholder="请填写正确的手机号" onblur="checkPhone(this)" /><span
+                        id='ret-msg-phone' style="color: red"></span>
+                </div>
+
+                <div class="username">
+                    <div class="left fl">验&nbsp;&nbsp;证&nbsp;&nbsp;码:&nbsp;&nbsp;<input class="yanzhengma" type="text"
+                                                                                        name="username" id="smsCode"
+                                                                                        placeholder="请输入验证码"/></div>
+                    <div class="right fl">
+                        <a class="tableText fr" onclick="sendCode()">获取验证码</a></div>
+                    <div class="clear"></div>
+                </div>
+
+            </div>
+            <div class="regist_submit">
+                <button class="submit" type="submit" name="submit" onmousedown="down()">立即修改</button>
+            </div>
+
+        </div>
+    </div>
+</form>
+</body>
+
+
+<script type="text/javascript">
+
+
+    function sendCode() {
+        var phone = $("#phone").val();
+        console.log(phone.length);
+
+        $.get("[[${basePath}]]/login/sendSms", {"phone": phone});
+
+
+        $(".tableText").click(function () {
+            var time = 120;
+            var timer = setInterval(function () {
+                time--;
+                $(".tableText").text("（" + time + "秒）重发");
+                if (time == 0) {
+                    clearInterval(timer);
+                    $(".tableText").text("获取验证码");
+                }
+            }, 1000);
+        });
+    }
+
+    function down() {
+        console.log("test---");
+        var phone = document.getElementById("phone").value;
+        var smsCode = document.getElementById("smsCode").value;
+        console.log(phone);
+        console.log("test---");
+
+        $.ajax({
+
+            type: 'post',
+            url: '[[${basePath}]]/user/AlterPhone',
+            data: {
+                'phone': phone,
+                'smsCode': smsCode,
+            },
+            dataType: 'text',
+            success: function (data) {
+                if (data == 1) {
+                    alert("验证码错误!")
+                } else {
+
+                    alert("修改手机号成功!")
+                }
+// 				window.console.log('成功回调函数');
+
+            },
+            error: function () {
+                window.console.log('失败回调函数');
+            }
+
+
+        })
+
+    }
+
+    function checkPhone(obj) {
+        console.log(obj.value);
+        var phone = obj.value;
+
+        if(!(/^1[3456789]\d{9}$/.test(phone))){
+            alert("手机号码有误,请重新输入!");
+            return false;
+        }else {
+            $.ajax({
+
+                type: 'post',
+                url: '[[${basePath}]]/register/checkPhone',
+                data: {
+                    'phone': phone,
+                },
+                dataType: 'text',
+                success: function (data) {
+                    if (data == 1) {
+                        $('#ret-msg-phone').html("手机号已存在!");
+                    } else {
+                        //不存在
+                        $('#ret-msg-phone').html("");
+                    }
+// 				window.console.log('成功回调函数');
+
+                },
+                error: function () {
+                    window.console.log('失败回调函数');
+                }
+
+
+            })
+        }
+
+
+    }
+
+
+
+</script>
+
+
+</html>
